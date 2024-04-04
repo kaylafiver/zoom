@@ -3,6 +3,7 @@
 .docusaurus
 .stylex
 build
+dev
 coverage
 dist
 lib
