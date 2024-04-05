@@ -3,13 +3,6 @@ import { fileURLToPath } from 'url';
 import esbuildPluginTsc from 'esbuild-plugin-tsc';
 import stylexPlugin from '@stylexjs/esbuild-plugin';
 
-
-
-// const BUILD_DIR_NAME = 'public';
-// const OUTFILE = `${BUILD_DIR_NAME}/bundle.js`;
-const OUTDIR = 'build';
-
-
 export function sharedSettings(OUTDIR) {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
@@ -49,6 +42,7 @@ export function sharedSettings(OUTDIR) {
       // See all options in the babel plugin configuration docs:
       // https://stylexjs.com/docs/api/configuration/babel-plugin/
       stylexPlugin({
+        dev: false,
         useCSSLayers: true,
         generatedCSSFileName: STYLEX_BUNDLE_PATH,
         stylexImports: ['@stylexjs/stylex'],

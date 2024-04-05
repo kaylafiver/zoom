@@ -1,8 +1,10 @@
 // https://github.com/facebook/stylex/issues/281
+// https://open-props.style/#colors
 
 import * as stylex from '@stylexjs/stylex';
-import { colors } from '@stylexjs/open-props/lib/colors.stylex';
-import { color } from './color.stylex';
+import { colors as opcolors } from '@stylexjs/open-props/lib/colors.stylex';
+// import { fonts as opfonts } from '@stylexjs/open-props/lib/fonts.stylex';
+import { tokens } from './tokens.stylex';
 
 // import { light } from './light'; //Will not work
 
@@ -13,28 +15,31 @@ import { color } from './color.stylex';
 // });
 // -- OR --
 // Need to define light var here !! CANNOT use import
-const light = {
-  backgroundColor: colors.gray1,
-  colorCircleButton: colors.cyan11,
-  bgColorCircleButton: colors.cyan2,
+export const light = {
+  bgColor: opcolors.gray1,
+  colorText: opcolors.gray8,
 
-  primaryText: 'red',
+  colorButton: opcolors.cyan11,
+  bgColorButton: opcolors.cyan2,
+
+
 };
-export const lightTheme = stylex.createTheme(color, light);
+export const lightTheme = stylex.createTheme(tokens, light);
 
+export const dark = {
+  bgColor: opcolors.gray11,
+  colorText: opcolors.gray2,
 
-const dark = {
-  backgroundColor: colors.gray11,
-  colorCircleButton: colors.cyan2,
-  bgColorCircleButton: colors.cyan11,
+  colorButton: opcolors.cyan2,
+  bgColorButton: opcolors.cyan11,
 
-  primaryText: 'grey',
 }
-export const darkTheme = stylex.createTheme(color, dark);
+export const darkTheme = stylex.createTheme(tokens, dark);
 
 const DARK = '@media (prefers-color-scheme: dark)';
-export const autoTheme = stylex.createTheme(color, {
-  primaryText: { default: light.primaryText, [DARK]: dark.primaryText },
-  backgroundColor: { default: light.backgroundColor, [DARK]: dark.backgroundColor },
+export const autoTheme = stylex.createTheme(tokens, {
+  colorText: { default: light.colorText, [DARK]: dark.colorText },
+  bgColor: { default: light.bgColor, [DARK]: dark.bgColor },
 });
 
+// https://github.com/facebook/stylex/discussions/227#discussioncomment-7915325
